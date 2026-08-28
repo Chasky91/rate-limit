@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
   res.send('Hello, World! 🚀');
 })
 
+app.get('/ip', (req, res) => {
+  const ipAddress = req.ip;
+  res.send(`Tu dirección IP es: ${ipAddress}`)
+})   
+
 app.get('/loguin',authRateLimiter , (req, res) => {
   res.send('Hola  Ususario');
 })
