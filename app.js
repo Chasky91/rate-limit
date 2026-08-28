@@ -23,7 +23,7 @@ const  authRateLimiter = rateLimit({
 })
 
 app.use(limiter)
-
+app.set('trust proxy', 3) // trust first proxy
 
 app.get('/', (req, res) => {
   res.send('Hello, World! 🚀');
