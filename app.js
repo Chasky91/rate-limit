@@ -5,28 +5,31 @@ const app = express()
 const  PUERTO = process.env.PORT || 3000
 
 const  limiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 15 minutes
+    windowMs: 1 * 60 * 1000, // 1 minutes
     limit: 10,
-    //standardHeaders: 'draft-8',
-    //legacyHeaders:false,
+    standardHeaders: 'draft-8',
+    legacyHeaders:false,
     //ipv6Subnet: 56
     message: 'Has  superado  el  limi  de  consultas  a la pagina'
 })
 
-const  authRateLimiter = rateLimit({
-    windowMs: 1 * 60 * 1000, // 15 minutes
+const  authRateLimiter = rateLimit(
+  {
+    windowMs:  60 * 1000, // 1 minutes
     limit: 5,
     standardHeaders: 'draft-8',
     //skipSuccessfulRequests:true,
     legacyHeaders:false,
     message: 'Has  superado  el  limite  acceso al  loguin'
-})
+  }
+)
 
 app.use(limiter)
-app.set('trust proxy', 3) // trust first proxy
+
+//app.set('trust proxy', 3) // trust first proxy
 
 app.get('/', (req, res) => {
-  res.send('Hello, World! 🚀');
+  res.send('Hello, World! ');
 })
 
 app.get('/ip', (req, res) => {
